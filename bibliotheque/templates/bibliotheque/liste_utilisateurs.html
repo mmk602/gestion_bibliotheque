@@ -1,0 +1,32 @@
+{% extends 'bibliotheque/liste_livres.html' %}
+
+{% block content %}
+    <main>
+<h1 class="page-title">Liste des Utilisateurs</h1>
+
+<!-- Create User Button -->
+<a href="{% url 'creer_utilisateur' %}" class="btn-add">Créer un utilisateur</a>
+
+<!-- Table for Listing Users -->
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Adresse</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for utilisateur in utilisateurs %}
+        <tr>
+            <td>{{ utilisateur.username }}</td>
+            <td>{{ utilisateur.email }}</td>
+            <td>{{ utilisateur.telephone }}</td>
+            <td>{{ utilisateur.adresse }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </main>
+{% endblock %}

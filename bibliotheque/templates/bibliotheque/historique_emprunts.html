@@ -1,0 +1,26 @@
+{% extends 'bibliotheque/base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Historique des Emprunts</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Date d'emprunt</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emprunt in emprunts %}
+        <tr>
+            <td>{{ emprunt.livre.titre }}</td>
+            <td>{{ emprunt.date_emprunt }}</td>
+            <td>
+                <a href="{% url 'retourner_livre' emprunt.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir retourner ce livre ?');">Retourner</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

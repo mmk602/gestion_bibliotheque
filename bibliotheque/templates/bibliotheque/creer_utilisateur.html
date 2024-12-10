@@ -1,0 +1,11 @@
+{% extends 'bibliotheque/liste_livres.html' %}
+
+{% block content %}
+<h1 class="page-title">Créer un Utilisateur</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Créer</button>
+</form>
+<a href="{% url 'liste_utilisateurs' %}" class="btn btn-secondary mt-3">Retour</a>
+{% endblock %}

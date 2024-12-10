@@ -1,0 +1,27 @@
+{% extends 'bibliotheque/liste_livres.html' %}
+
+{% block content %}
+  <h2 class="page-title">Connexion</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="/" />
+    <button type="submit">Se connecter</button>
+</form>
+
+
+  {% if form.errors %}
+    <div class="errors">
+      <ul>
+        {% for field, errors in form.errors.items %}
+          <li>{{ errors }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <p>
+    Pas encore inscrit ? <a href="{% url 'creer_utilisateur' %}">Créer un compte</a>
+  </p>
+{% endblock %}

@@ -1,0 +1,696 @@
+
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif; /* Use a clean modern font */
+            margin: 0;
+            padding: 0;
+            background-color: #F5EFEB !important;
+        }
+
+        .navbar {
+            background-color: #6E7F9A !important;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .navbar-menu li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .navbar-menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-menu li .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #283e51;
+            display: none;
+            min-width: 150px;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-menu li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dropdown a:hover {
+            background: #4b79a1;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            margin-left: 10px;
+        }
+
+        .search-bar input::placeholder {
+            color: #ddd;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .burger-menu div {
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                background: #283e51;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                width: 200px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+        }
+        .navbar-menu li form button {
+        background: rgba(255, 255, 255, 0.2); /* Match hover style of links */
+        border: none;
+        color: #fff;
+        font-size: 1rem;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background-color 0.3s, color 0.3s;
+        text-decoration: none;
+    }
+
+    .navbar-menu li form button:hover {
+        background-color: #4b79a1; /* Highlight with a darker blue */
+        color: #fff; /* Keep text white for better contrast */
+    }
+
+
+
+
+/* Adjust layout for homepage */
+.row.justify-content-center {
+    display: flex;
+    justify-content: center; /* Center the content */
+    gap: 20px; /* Add some space between the books */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.card {
+    width: 100%;
+    max-width: 300px; /* Set a maximum width for each book card */
+    margin: 0 auto; /* Center the card */
+}
+
+/* Consistent image size for each book */
+.card-img-top {
+    height: 200px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+/* Styling for the "Emprunter" button */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Adjust layout for the book detail page */
+/* General container styling */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Book card styling */
+.book-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Top Section: Image and Details Side by Side */
+.top-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.book-image img {
+    max-width: 200px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 100px;
+}
+
+.title {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.label {
+    color: #2980b9;
+    font-weight: bold;
+}
+
+.unavailable {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 30px 100px;
+    background-color: #283e51;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #218c53;
+}
+
+/* Bottom Section: Résumé */
+.bottom-section {
+    margin-top: 20px;
+}
+
+.summary {
+    color: #7f8c8d;
+    margin: 10px 0;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .top-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-image img {
+        max-width: 100%;
+    }
+}
+
+
+/* General adjustments */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* General body font */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Navbar styling */
+header {
+    background-color: #333;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav .navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav .navbar li {
+    display: inline-block;
+}
+
+nav .navbar li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+nav .navbar li a:hover {
+    background-color: #444;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Add Book Button */
+.btn-add {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #45a049;
+}
+
+/* Table styling */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.admin-table th {
+    background-color: #333;
+    color: white;
+}
+
+.admin-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.book-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.no-image {
+    color: #888;
+    font-style: italic;
+}
+
+/* Action buttons */
+.btn-action {
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    background-color: #ffa500;
+    transition: background-color 0.3s;
+}
+
+.btn-action:hover {
+    background-color: #ff8c00;
+}
+
+.btn-delete {
+    background-color: #f44336;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
+}
+/* General Table Styles */
+.table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.table thead {
+    background-color: #6E7F9A !important;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    font-size: 18px;
+}
+
+.table td {
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9; /* Light row background */
+}
+
+.table tr:hover td {
+    background-color: #f2f2f2;
+}
+
+/* Action Button Styles */
+.btn {
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger {
+    background-color:  #2F4156 !important; /* Red color for danger actions */
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(192, 57, 43, 0.3);
+}
+
+/* Page Title Styling */
+h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #34495e;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Confirmation Dialog Styling */
+table .btn-danger[onclick]:hover {
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 28px;
+
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+        /* General Page Styling */
+.container {
+    margin-top: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Genre Section */
+.genre-section {
+    margin-bottom: 40px;
+}
+
+.genre-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2F4156;
+}
+
+/* Carousel Container */
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ccc #f4f4f4; /* Firefox */
+    width: 100%;
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+/* Book Item */
+.book-item {
+    flex: 0 0 auto;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.book-cover {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.book-title {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .book-item {
+        width: 120px;
+    }
+
+    .book-cover {
+        height: 150px;
+    }
+
+    .genre-title {
+        font-size: 20px;
+    }
+}
+
+
+        /* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+    position: relative;
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #2F4156;
+    width: 250px; /* Expands on focus */
+}
+
+.search-bar button {
+    background-color: #2F4156;
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.search-bar button:hover {
+    background-color: #5360f5;
+}
+
+
+/* Search Results: Larger Images */
+.search-result-img {
+    height: 300px; /* Increased height for larger images */
+    object-fit: cover; /* Ensures the image scales correctly */
+    border-radius: 8px; /* Adds a slightly rounded corner */
+    transition: transform 0.3s ease; /* Smooth animation on hover */
+}
+
+/* Hover Effect for Images */
+.search-result-img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Adjust Card Layout */
+.card-body {
+    padding: 20px; /* Adds space around the text */
+}
+
+.card-title {
+    font-size: 18px; /* Slightly larger title font */
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Align the auth icon next to the search bar */
+.auth-icon {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.auth-icon form, .auth-icon a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    color: #2F4156;
+    cursor: pointer;
+}
+
+.auth-icon a:hover, .auth-icon form:hover {
+    color: #0056b3;
+}
+
+.auth-icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.auth-icon button i, .auth-icon a i {
+    font-size: 24px;
+}

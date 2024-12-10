@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Bibliothèque</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav>
+
+        <ul class="navbar">
+            <li>
+                <a class="navbar-brand" href="{% url 'accueil' %}">
+                    <i class="fas fa-book"></i> Bibliothèque
+                </a>
+            </li>
+
+            <li><a href="{% url 'liste_livres' %}">Liste des Livres</a></li>
+            <li><a href="{% url 'liste_utilisateurs' %}">Liste des Utilisateurs</a></li>
+            <li><a href="{% url 'login' %}">Connexion</a></li>
+            <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+        </ul>
+    </nav>
+</header>
+{% block content %}
+<!-- Main Content -->
+<main>
+    <h1 class="page-title">Liste des Livres</h1>
+
+    <!-- Add Book Button -->
+    <a href="{% url 'create_livre' %}" class="btn-add">Ajouter un Livre</a>
+
+    <!-- Table for Listing Books -->
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Genre</th>
+                <th>Année</th>
+                <th>Exemplaires disponibles</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livre in livres %}
+            <tr>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.auteur }}</td>
+                <td>{{ livre.genre }}</td>
+                <td>{{ livre.annee_publication }}</td>
+                <td>{{ livre.exemplaires_disponibles }}</td>
+                <td>
+                    {% if livre.image %}
+                        <img src="{{ livre.image.url }}" alt="{{ livre.titre }}" class="book-image">
+                    {% else %}
+                        <span class="no-image">Pas d'image</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="button-container">
+                    <a href="{% url 'update_livre' livre.id %}" class="btn-action">Modifier</a>
+                    <a href="{% url 'delete_livre' livre.id %}" class=" btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">Supprimer</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock content %}
+</body>
+</html>

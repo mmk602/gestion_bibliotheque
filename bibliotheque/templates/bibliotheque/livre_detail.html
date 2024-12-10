@@ -1,0 +1,45 @@
+{% extends 'bibliotheque/base.html' %}
+
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<div class="container">
+    {% block content %}
+    <div class="book-card">
+        <!-- Top Section: Image and Details Side by Side -->
+        <div class="top-section">
+            <!-- Book Image -->
+            <div class="book-image">
+                {% if livre.image %}
+                    <img src="{{ livre.image.url }}" alt="{{ livre.titre }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/400" alt="No image available">
+                {% endif %}
+            </div>
+            <!-- Book Details -->
+            <div class="book-details">
+                <h2 class="title">{{ livre.titre }}</h2>
+                <p><strong class="label">Auteur :</strong> {{ livre.auteur }}</p>
+                <p><strong class="label">Genre :</strong> {{ livre.genre }}</p>
+                <p><strong class="label">Année de publication :</strong> {{ livre.annee_publication }}</p>
+                <p><strong class="label">Exemplaires disponibles :</strong> {{ livre.exemplaires_disponibles }}</p>
+            </div>
+        </div>
+
+        <!-- Bottom Section: Résumé -->
+        <div class="bottom-section">
+            <h3 class="label">Résumé :</h3>
+            <p class="summary">{{ livre.summary }}</p>
+
+            <!-- Emprunter Button -->
+            {% if livre.exemplaires_disponibles > 0 %}
+                <a href="{% url 'emprunter_livre' livre.id %}" class="btn">Emprunter</a>
+            {% else %}
+                <span class="unavailable">Indisponible</span>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+</div>

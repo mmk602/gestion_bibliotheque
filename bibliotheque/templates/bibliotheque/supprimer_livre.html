@@ -1,0 +1,12 @@
+{% extends 'bibliotheque/liste_livres.html' %}
+
+{% block content %}
+<h1 class="page-title">Supprimer un Livre</h1>
+<p>Êtes-vous sûr de vouloir supprimer le livre suivant ?</p>
+<p><strong>{{ livre.titre }}</strong></p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+    <a href="{% url 'liste_livres' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

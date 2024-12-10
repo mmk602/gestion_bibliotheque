@@ -1,0 +1,37 @@
+{% extends 'bibliotheque/base.html' %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<div class="container" style="margin-top: 40px;">
+    {% block content %}
+
+
+    <!-- Genre-based Sections -->
+    {% for genre, livres_genre in livres_by_genre.items %}
+    <div class="genre-section">
+        <h2 class="genre-title">{{ genre }}</h2>
+
+        <!-- Horizontal Scrollable Carousel -->
+        <div class="carousel-container">
+            {% for livre in livres_genre %}
+            <div class="book-item" onclick="location.href='{% url 'livre_detail' livre.id %}'" style="cursor: pointer;">
+                {% if livre.image %}
+                <img src="{{ livre.image.url }}" alt="{{ livre.titre }}" class="book-cover">
+                {% else %}
+                <img src="https://via.placeholder.com/150" alt="No image available" class="book-cover">
+                {% endif %}
+                <p class="book-title">{{ livre.titre }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% empty %}
+        {% endfor %}
+    <p class="text-center">Aucun livre trouvé</p>
+    {% endblock %}
+</div>

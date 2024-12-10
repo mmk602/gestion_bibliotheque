@@ -1,0 +1,27 @@
+{% extends 'bibliotheque/base.html' %}
+
+{% block content %}
+
+
+{% if livres %}
+    <div class="row justify-content-center">
+        {% for livre in livres %}
+            <div class="col-lg-4 col-md-6 col-sm-8 mb-4"> <!-- Adjusted for larger cards -->
+                <div class="card h-100" style="cursor: pointer;" onclick="location.href='{% url 'livre_detail' livre.id %}'">
+                    {% if livre.image %}
+                        <img src="{{ livre.image.url }}" class="card-img-top search-result-img" alt="{{ livre.titre }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300" class="card-img-top search-result-img" alt="No image available">
+                    {% endif %}
+                    <div class="card-body text-center">
+
+                        <p class="card-text">{{ livre.description|truncatewords:20 }}</p> <!-- Slightly longer description -->
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-center">Aucun livre trouvé pour "{{ query }}".</p>
+{% endif %}
+{% endblock %}

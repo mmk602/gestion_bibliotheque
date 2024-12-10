@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="{% url 'accueil' %}">
+            <i class="fas fa-book"></i> Bibliothèque
+        </a>
+
+        <ul class="navbar-menu">
+            <li><a href="">Accueil</a></li>
+            <li>
+                <a href="{% url 'accueil' %}">Livres</a>
+                <div class="dropdown">
+                    <a href="">Genres</a>
+                    <a href="">Auteurs</a>
+                    <a href="">Nouveautés</a>
+                </div>
+            </li>
+            <li><a href="">Contact</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'historique_emprunts' %}">Mes emprunts</a></li>
+            {% endif %}
+        </ul>
+
+        <!-- Search Bar -->
+        <form method="get" action="{% url 'search_books' %}" class="search-bar">
+            <input type="text" name="query" placeholder="Rechercher un livre..." required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+        <!-- Connexion/Deconnexion Icon -->
+        <div class="auth-icon">
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" title="Déconnexion">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" title="Connexion">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="burger-menu" id="burger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script>
+        const burgerMenu = document.getElementById('burger-menu');
+        const navbarMenu = document.querySelector('.navbar-menu');
+
+        burgerMenu.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
